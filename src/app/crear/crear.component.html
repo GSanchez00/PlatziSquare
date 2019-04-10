@@ -1,0 +1,22 @@
+<div class="well">
+    <a routerLink="/lugares">Lugares</a> / Crear Lugar
+</div>
+<div class="container">
+    <label>Nombre</label>
+    <input type="text" class="form-control" [(ngModel)]="lugar.nombre"/>
+    <br />
+    <label>Estado</label>
+    <select class="form-control" [(ngModel)]="lugar.estado">
+            <option value="Activo">Activo</option>
+            <option value="Inactivo">Inactivo</option>
+    </select>
+    <br />
+    <label>Plan</label>
+    <select class="form-control"  [(ngModel)]="lugar.plan">
+            <option value="Pagado">Pagado</option>
+            <option value="No Pagao">No Pagao</option>
+    </select>
+    <hr />
+    <a class="btn btn-primary" (click)="guardarLugar()">Enviar</a>
+    <a class="btn btn-default" routerLink="/lugares">Cancelar</a>
+</div>
