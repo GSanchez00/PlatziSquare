@@ -1,5 +1,8 @@
 import {Injectable} from '@angular/core'
-import { AngularFireAction, AngularFireDatabase } from '@angular/fire/database';
+// import { AngularFireAction, AngularFireDatabase } from '@angular/fire/database';
+import { AngularFireDatabase } from 'angularfire2/database';
+//import { FirebaseObjectObservable } from 'angularfire2/database-deprecated';
+
 @Injectable({
     providedIn: 'root',
    })
@@ -20,14 +23,19 @@ export class LugaresService{
           //this.firebaseDb.object("lugares/"+ lugar.id);
           return this.firebaseDb.list("lugares/").valueChanges();
       }
-      public getLugarById(id){
-        return this.firebaseDb.object("lugares/"+ id);
-      }
-      public buscarLugar(id){
-        return this.lugares.filter((lugar) => {return lugar.id==id})[0] || null;
+      public getLugar(id){
+        // return this.lugares.filter((lugar) => {return lugar.id==id})[0] || null;
+        let item= this.firebaseDb.object("lugares/"+ id).valueChanges();
+        return item;
       }
       public guardarLugar(lugar){
         lugar.id=Date.now();   
         this.firebaseDb.database.ref("lugares/" + lugar.id).set(lugar);
+      }
+      public editarLugar(lugar){  
+        this.firebaseDb.database.ref("lugares/" + lugar.id).set(lugar);
+      }
+      public eliminarLugar(id){  
+        this.firebaseDb.database.ref("lugares/" + id).remove();
       }
 }

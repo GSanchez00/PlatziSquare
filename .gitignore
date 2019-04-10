@@ -5,8 +5,6 @@
 /tmp
 /out-tsc
 
-src/app/app.modules.ts
-
 # dependencies
 /node_modules
 
@@ -39,3 +37,4 @@ testem.log
 # System Files
 .DS_Store
 Thumbs.db
+src/app/app.module.ts

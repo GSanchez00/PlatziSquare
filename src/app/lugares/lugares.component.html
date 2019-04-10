@@ -5,20 +5,47 @@
 <div class="container">
     <div class="row">
         <div class="col-md-8">
-        <h2>Lugares Cercanos</h2>
-        <br>
-        <a class="btn-primary btn-sm"  routerLink="/crear">Crear nuevo negocio</a>
-        <br>
-        <ul class="list-group mt-3">
-            <ng-container *ngFor="let lugar of lugares; let i=index">
-                <li routerLink="/detalle/{{lugar.id}}" [queryParams]="{action2:'edit'}" class="list-group-item" *ngIf="lugar.estado=='Activo'">
-                    {{lugar.nombre}}
-                </li>
-            </ng-container>
-        </ul>
+            <h2>Lugares Cercanos</h2>
+            <br>
+            <a class="btn-primary btn-sm"  routerLink="/crear/new">Crear nuevo negocio</a>
+            <br><br>
+            <!-- <ul class="list-group mt-3">
+                <ng-container *ngFor="let lugar of lugares; let i=index">
+                    <li routerLink="/crear/{{lugar.id}}" class="list-group-item" *ngIf="lugar.estado=='Activo'">
+                        {{lugar.nombre}}
+                    </li>
+                </ng-container>
+            </ul> -->
+            <!-- <ng-container *ngFor="let lugar of lugares; let i=index">
+                <div class="row">
+                    <div routerLink="/crear/{{lugar.id}}" *ngIf="lugar.estado=='Activo'" class="col-md" >{{lugar.nombre}}</div>
+                    <div *ngIf="lugar.estado=='Activo'" class="col-md-3">Eliminar</div>
+                </div>
+            </ng-container> -->
+
+            <table class="table table-hover table-dark">
+                <thead>
+                    <tr>
+                    <th scope="col">#</th>
+                    <th scope="col"></th>
+                    <th scope="col"></th>
+                    </tr>
+                </thead>
+                <tbody  *ngFor="let lugar of lugares; let i=index">
+                    <tr>
+                    <th scope="row">{{i+1}}</th>
+                    <td routerLink="/crear/{{lugar.id}}" *ngIf="lugar.estado=='Activo'" class="col-md">{{lugar.nombre}}</td>
+                    <td *ngIf="lugar.estado=='Activo'" class="col-md-3">        
+                        <a (click)="eliminar(lugar.id, lugar.nombre)" class="btn btn-danger btn-md">
+                            <span class="glyphicon glyphicon-remove"></span> Eliminar 
+                        </a>
+                    </td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
-        <div class="col-md-4">
-        <h2>Destacados</h2>
+        <div class="col-md-3">
+            <h2>Destacados</h2>
         </div>
     </div>
 </div>

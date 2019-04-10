@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { LugaresService } from '../services/lugares.services';
+import {ActivatedRoute} from "@angular/router";
+
 
 @Component({
   selector: 'app-crear',
@@ -7,11 +9,25 @@ import { LugaresService } from '../services/lugares.services';
 })
 export class CrearComponent {
   lugar: any= {};
-
-  constructor(private lugaresService:LugaresService){}
+  id:any = null;
+  constructor(private lugaresService:LugaresService, private route: ActivatedRoute){
+    this.id = this.route.snapshot.params['id'];
+    if(this.id != 'new'){
+      this.lugaresService.getLugar(this.id)
+            .subscribe((lugar)=>{
+                this.lugar = lugar;
+            });
+    }
+  }
   guardarLugar(){
-    this.lugaresService.guardarLugar(this.lugar);
-    alert("Negocio guardado con exito!");
-    this.lugar={};
+    if(this.id != 'new'){
+      this.lugaresService.editarLugar(this.lugar);
+      alert('Negocio editado con éxito!');
+    }else{
+        this.lugar.id = Date.now();
+        this.lugaresService.guardarLugar(this.lugar);
+        alert('Negocio guardado con éxito!');
+    }
+    this.lugar = {};
   }
 }
