@@ -5,6 +5,9 @@
 /tmp
 /out-tsc
 
+#file with keys
+/src/app/app.modules.ts
+
 # dependencies
 /node_modules
 
