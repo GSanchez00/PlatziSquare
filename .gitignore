@@ -7,6 +7,7 @@
 
 #file with keys
 /src/app/app.modules.ts
+/environments
 
 # dependencies
 /node_modules

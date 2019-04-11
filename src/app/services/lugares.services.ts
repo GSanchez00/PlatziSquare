@@ -1,7 +1,5 @@
 import {Injectable} from '@angular/core'
-// import { AngularFireAction, AngularFireDatabase } from '@angular/fire/database';
 import { AngularFireDatabase } from 'angularfire2/database';
-//import { FirebaseObjectObservable } from 'angularfire2/database-deprecated';
 
 @Injectable({
     providedIn: 'root',
